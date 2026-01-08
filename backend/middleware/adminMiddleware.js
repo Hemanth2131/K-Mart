@@ -1,7 +1,7 @@
 exports.admin = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') {
-    next();
-  } else {
-    res.status(403).json({ message: 'Admin access denied' });
+  if (req.user && req.user.isAdmin) {
+    return next();
   }
+
+  return res.status(403).json({ message: 'Admin access only' });
 };
