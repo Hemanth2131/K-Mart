@@ -23,7 +23,7 @@ const createAdminIfNotExists = async () => {
   name: 'Admin',
   email: adminEmail,
   password: hashedPassword,
-  role: 'admin'
+  isAdmin: true
 });
 
   console.log('👑 Admin created successfully');
