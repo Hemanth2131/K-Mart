@@ -20,11 +20,11 @@ const createAdminIfNotExists = async () => {
   const hashedPassword = await bcrypt.hash('admin123', 10);
 
   await User.create({
-    username: 'Admin',
-    email: adminEmail,
-    password: hashedPassword,
-    role: 'admin'
-  });
+  name: 'Admin',
+  email: adminEmail,
+  password: hashedPassword,
+  role: 'admin'
+});
 
   console.log('👑 Admin created successfully');
 };
