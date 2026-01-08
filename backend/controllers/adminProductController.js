@@ -2,17 +2,25 @@ const Product = require('../models/productModel');
 
 // ✅ CREATE
 exports.createProduct = async (req, res) => {
-  const product = new Product({
-    name: req.body.name,
-    price: req.body.price,
-    countInStock: req.body.countInStock,
-    category: req.body.category,
-    image: req.body.image,
-    user: req.user.id,
-  });
+exports.createProduct = async (req, res) => {
+  try {
+    const product = new Product({
+      name: req.body.name,
+      price: Number(req.body.price),
+      countInStock: Number(req.body.countInStock),
+      category: req.body.category,
+      image: req.body.image || '',
+      user: req.user.id,
+    });
 
-  const created = await product.save();
-  res.status(201).json(created);
+    const created = await product.save();
+    res.status(201).json(created);
+  } catch (error) {
+    res.status(400).json({
+      message: 'Product creation failed',
+      error: error.message,
+    });
+  }
 };
 
 // ✅ UPDATE
